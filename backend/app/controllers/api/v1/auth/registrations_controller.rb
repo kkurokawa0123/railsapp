@@ -1,5 +1,4 @@
 class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
-  # skip_before_action :authenticate_api_v1_user!, only: [:create]
   
   private
 

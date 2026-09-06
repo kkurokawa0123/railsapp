@@ -1,4 +1,4 @@
-import { Password } from "@/domain/value_object/auth/password";
+import { Password } from '@/domain/models/valueObjects/auth/password';
 
 export class PasswordChange {
   private constructor(
@@ -14,31 +14,16 @@ export class PasswordChange {
     newPassword: Password,
     newPasswordConfirmation: Password,
   ) {
-    return new PasswordChange(
-      currentPassword,
-      newPassword,
-      newPasswordConfirmation,
-    );
+    return new PasswordChange(currentPassword, newPassword, newPasswordConfirmation);
   }
 
   // 確認用パスワードと同一であること
   assertPasswordConfirmationMatches() {
     if (!this.newPassword.equals(this.newPasswordConfirmation)) {
-      throw new Error(
-        "新パスワードと確認用パスワードの値が異なります。再度入力してください",
-      );
+      throw new Error('新パスワードと確認用パスワードの値が異なります。再度入力してください');
     }
   }
 
-  // get currentPassword(): Password {
-  //   return this.current_password;
-  // }
-  // get newPassword(): Password {
-  //   return this.password;
-  // }
-  // get newPasswordConfirmation(): Password {
-  //   return this.password_confirmation;
-  // }
   toRequestData() {
     return {
       current_password: this.currentPassword.value,

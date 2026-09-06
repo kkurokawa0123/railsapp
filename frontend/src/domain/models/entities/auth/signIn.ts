@@ -1,5 +1,5 @@
-import { Email } from "@/domain/value_object/auth/email";
-import { Password } from "@/domain/value_object/auth/password";
+import { Email } from '@/domain/models/valueObjects/auth/email';
+import { Password } from '@/domain/models/valueObjects/auth/password';
 
 export class SignIn {
   private constructor(
@@ -15,14 +15,6 @@ export class SignIn {
   public delete(): void {
     // 削除時のロジックがあれば書く
   }
-
-  // get email(): Email {
-  //   return this._email;
-  // }
-
-  // get password(): Password {
-  //   return this._password;
-  // }
 
   toRequestData() {
     return {
