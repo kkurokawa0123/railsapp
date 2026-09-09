@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -10,4 +12,8 @@ export default defineConfig({
     port: 8000,
   },
   plugins: [react(), tailwindcss(), tsconfigPaths()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+  },
 });
