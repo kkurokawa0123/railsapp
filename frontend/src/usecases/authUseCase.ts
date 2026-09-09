@@ -26,11 +26,7 @@ export class AuthUseCase {
   async signIn(input: InputSignIn): Promise<User> {
     // Domainオブジェクトの構築インプット値をエンティティーに変換してサインアップの引数に設定
     const params = SignIn.create(new Email(input.email), new Password(input.password));
-    const user = await this.authRepository.signIn(params);
-    if (!user) {
-      throw new Error('Sign in failed');
-    }
-    return user;
+    return await this.authRepository.signIn(params);
   }
 
   async signOut(): Promise<void> {
@@ -38,8 +34,7 @@ export class AuthUseCase {
   }
 
   async getCurrentUser(): Promise<AuthAccount | undefined> {
-    const authData = await this.authRepository.getCurrentUser();
-    return authData;
+    return await this.authRepository.getCurrentUser();
   }
   async updatePassword(input: InputChangePassword): Promise<string> {
     const params = PasswordChange.create(
@@ -47,7 +42,6 @@ export class AuthUseCase {
       new Password(input.newPassword),
       new Password(input.newPasswordConfirmation),
     );
-    const result = await this.authRepository.updatePassword(params);
-    return result;
+    return await this.authRepository.updatePassword(params);
   }
 }

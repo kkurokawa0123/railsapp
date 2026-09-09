@@ -33,6 +33,7 @@ export class SignUp {
       name: this.userName.value,
       email: this.email.value,
       password: this.password.value,
+      password_confirmation: this.passwordConfirmation.value,
     };
   }
 }

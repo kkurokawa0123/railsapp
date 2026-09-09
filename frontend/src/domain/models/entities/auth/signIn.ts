@@ -12,10 +12,6 @@ export class SignIn {
     return new SignIn(email, password);
   }
 
-  public delete(): void {
-    // 削除時のロジックがあれば書く
-  }
-
   toRequestData() {
     return {
       email: this.email.value,

@@ -66,10 +66,7 @@ export const useUpdatePassword = () => {
   const { authUseCase } = container;
 
   return useMutation({
-    mutationFn: async (input: InputChangePassword) => await authUseCase.updatePassword(input),
-    onSuccess: (message) => {
-      return message;
-    },
+    mutationFn:  (input: InputChangePassword) =>  authUseCase.updatePassword(input),
     onError: (error) => {
       console.error('useUpdatePassword fail', error);
       return error.message;

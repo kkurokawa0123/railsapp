@@ -39,7 +39,12 @@ export class AuthRepository implements IAuthRepository {
       if (response.status !== HTTP_STATUS.OK) {
         throw new Error('サインインに失敗しました');
       }
-      return response.data.data as User;
+
+      const user = response.data.data as User;
+      if (!user) {
+        throw new Error('サインインに失敗しました');
+      }
+      return user;
     } catch (err: unknown) {
       // APIコントローラーのエラーメッセージを受取
       if (axios.isAxiosError(err)) {
@@ -84,7 +89,8 @@ export class AuthRepository implements IAuthRepository {
       if (response.status !== HTTP_STATUS.OK) {
         throw new Error('ユーザー情報の取得に失敗しました');
       }
-      return response.data.data as AuthAccount;
+      const authData = response.data.data as AuthAccount | undefined
+      return authData
     } catch (err: unknown) {
       // APIコントローラーのエラーメッセージを受取
       if (axios.isAxiosError(err)) {

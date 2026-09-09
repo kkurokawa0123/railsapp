@@ -18,7 +18,7 @@ export class PasswordChange {
   }
 
   // 確認用パスワードと同一であること
-  assertPasswordConfirmationMatches() {
+  private assertPasswordConfirmationMatches() : void {
     if (!this.newPassword.equals(this.newPasswordConfirmation)) {
       throw new Error('新パスワードと確認用パスワードの値が異なります。再度入力してください');
     }

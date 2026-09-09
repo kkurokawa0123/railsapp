@@ -13,5 +13,8 @@ export class Email extends BaseValueObject<EmailValue, 'Email'> {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       throw new Error('Eメールアドレスの入力形式が不正です');
     }
+    if (value.length > 40) {
+      throw new Error('Eメールアドレスは40字以内で入力してください');
+    }
   }
 }
