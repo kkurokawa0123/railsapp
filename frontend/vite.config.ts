@@ -16,5 +16,5 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
   },
-  base: '/railsapp/',
+  base: process.env.VITE_BASE_PATH ?? '/',
 });
