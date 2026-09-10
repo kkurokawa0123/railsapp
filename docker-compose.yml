@@ -27,6 +27,8 @@ services:
       - node_modules:/todoapp/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - back
 
   db:
     image: mysql:8.0

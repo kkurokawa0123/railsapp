@@ -9,11 +9,14 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.production?
       # 本番用
-      origins /https:\/\/.*\.vercel\.app/
+      origins (
+        /\Ahttps:\/\/.*\.vercel\.app\z/,
+        "https://kkurokawa0123.github.io"
+        )
     else
       # Rails.env.development?
       # ローカル（development）　React側はポート番号8000で作るので「localhost:8000」を指定
-      origins "localhost:8000" 
+      origins "http://localhost:8000" 
     end
 
     resource "*",
