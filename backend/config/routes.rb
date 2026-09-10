@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         # sessions: 'api/v1/auth/sessions'
       }
       resources :test, only: %i[index]
+      resource :password, only: [:update]
 
       namespace :auth do
         resources :sessions, only: %i[index]
