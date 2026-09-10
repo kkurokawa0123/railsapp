@@ -9,7 +9,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.production?
       # 本番用
-      origins (
+      origins(
         /\Ahttps:\/\/.*\.vercel\.app\z/,
         "https://kkurokawa0123.github.io"
         )
