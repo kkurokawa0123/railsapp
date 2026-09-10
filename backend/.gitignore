@@ -31,3 +31,5 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+# Ignore test_controller.rb for testing api controlle
+/app/controllers/api/v1/test_controller.rb
