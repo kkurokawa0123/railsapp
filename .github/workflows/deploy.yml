@@ -48,6 +48,7 @@ jobs:
         run: npm run build
         env:
           VITE_API_URL: https://webapp-yyjr.onrender.com/api/v1
+          VITE_BASE_PATH: /railsapp/
 
       - name: GitHub Pagesをセットアップ
         uses: actions/configure-pages@v6
