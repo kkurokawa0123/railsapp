@@ -47,7 +47,7 @@ jobs:
       - name: ビルド
         run: npm run build
         env:
-          VITE_API_URL: https://webapp-yyjr.onrender.com/api/v1
+          VITE_API_URL: https://todo-sasuke-webservice.onrender.com/api/v1
           VITE_BASE_PATH: /railsapp/
 
       - name: SPA用404ページを作成
