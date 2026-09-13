@@ -7,10 +7,12 @@ import App from './App';
 
 const root = createRoot(document.getElementById('root') as Element);
 
-const basename = import.meta.env.VITE_BASE_PATH ?? '/';
+const basePath = import.meta.env.VITE_BASE_PATH ?? '/';
+
+const routerProps = basePath === '/' ? {} : { basename: basePath };
 
 root.render(
-  <BrowserRouter basename={basename}>
+  <BrowserRouter {...routerProps}>
     <LoadingProvider>
       <MessageProvider>
         <App />
