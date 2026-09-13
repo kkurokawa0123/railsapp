@@ -1,20 +1,26 @@
 /// <reference types="vitest/config" />
 
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vite.dev/config/
-export default defineConfig({
-  server: {
-    host: true,
-    port: 8000,
-  },
-  plugins: [react(), tailwindcss(), tsconfigPaths()],
-  test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
-  },
-  base: process.env.VITE_BASE_PATH ?? '/',
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    server: {
+      host: true,
+      port: 8000,
+    },
+
+    plugins: [react(), tailwindcss(), tsconfigPaths()],
+
+    test: {
+      environment: 'jsdom',
+      setupFiles: ['./src/test/setup.ts'],
+    },
+
+    base: env.VITE_BASE_PATH ?? '/',
+  };
 });
