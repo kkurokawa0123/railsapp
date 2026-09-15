@@ -12,6 +12,12 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: 8000,
+      proxy: {
+        '/api': {
+          target: 'http://back:3000',
+          changeOrigin: false,
+        },
+      },
     },
 
     plugins: [react(), tailwindcss(), tsconfigPaths()],

@@ -1,22 +1,24 @@
 import type { ChangeEvent } from 'react';
 
-type TextFieldProps = {
+type RequiredTextFieldProps = {
   name: string;
   label: string;
   value: string;
   type?: 'text' | 'email';
+  placeholder?: string;
   autoComplete?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const TextField = ({
+export const RequiredTextField = ({
   name,
   label,
   value,
   type = 'text',
+  placeholder,
   autoComplete,
   onChange,
-}: TextFieldProps) => {
+}: RequiredTextFieldProps) => {
   return (
     <div>
       <label htmlFor={name} className="mb-1 block text-sm font-medium text-gray-700">
@@ -27,6 +29,7 @@ export const TextField = ({
         name={name}
         type={type}
         required
+        placeholder={placeholder}
         autoComplete={autoComplete}
         value={value}
         onChange={onChange}

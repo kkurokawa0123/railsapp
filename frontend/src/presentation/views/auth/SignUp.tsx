@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { PasswordField } from '@/presentation/views/components/PasswordField';
+import { RequiredTextField } from '@/presentation/views/components/RequiredTextField';
 import { useLoadingContext } from '@/presentation/contexts/lodingContext';
 import { useMessageContext } from '@/presentation/contexts/messageContext';
 import { useSingUp } from '@/queries/hooks/auth/useAuthMutation';
@@ -47,51 +48,43 @@ const SignUp: React.FC = () => {
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
-      className="mt-24 flex justify-center px-4"
+      className="mt-24 flex w-full justify-center px-4"
     >
-      <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+      <div className="w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 shadow-md">
         <div className="mb-6 text-center">
           <h2 className="text-xl font-semibold text-gray-800">アカウント新規登録</h2>
         </div>
         <div className="space-y-4">
           <div>
-            <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-700">
-              Name
-            </label>
-            <input
-              id="name"
+            <RequiredTextField
               name="name"
-              type="text"
-              required
+              label="名称"
               value={form.name}
+              type="text"
+              placeholder="例:テスト太郎"
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
           </div>
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
+            <RequiredTextField
               name="email"
-              type="email"
-              required
+              label="Eメールアドレス"
               value={form.email}
+              type="email"
+              placeholder="例:xxxxxxx@sample.com"
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
           </div>
           <PasswordField
             name="password"
-            label="Password"
+            label="パスワード"
             value={form.password}
             onChange={handleChange}
             autoComplete="new-password"
           />
           <PasswordField
             name="passwordConfirmation"
-            label="Password Confirmation"
+            label="パスワード(確認用)"
             value={form.passwordConfirmation}
             onChange={handleChange}
             autoComplete="new-password-confirmation"

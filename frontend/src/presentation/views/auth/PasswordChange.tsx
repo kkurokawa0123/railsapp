@@ -69,21 +69,21 @@ const PasswordChange = () => {
         <div className="space-y-4">
           <PasswordField
             name="currentPassword"
-            label="Current Password"
+            label="現在のパスワード"
             value={form.currentPassword}
             onChange={handleChange}
             autoComplete="current-password"
           />
           <PasswordField
             name="newPassword"
-            label="New Password"
+            label="変更後のパスワード"
             value={form.newPassword}
             onChange={handleChange}
             autoComplete="new-password"
           />
           <PasswordField
             name="newPasswordConfirmation"
-            label="New Password Confirmation"
+            label="変更後のパスワード(確認用)"
             value={form.newPasswordConfirmation}
             onChange={handleChange}
             autoComplete="new-password"
