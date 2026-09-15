@@ -33,7 +33,7 @@ export const PasswordField = ({
           type={showPassword ? 'text' : 'password'}
           required
           autoComplete={autoComplete}
-          placeholder="At least 8 characters"
+          placeholder="（A–Z）（a–z）を含んだ8文字以上13文字未満"
           className="w-full rounded-md border border-gray-300 px-4 py-3 pr-12 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
         />
         <button

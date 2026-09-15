@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { PasswordField } from '@/presentation/views/components/PasswordField';
+import { RequiredTextField } from '@/presentation/views/components/RequiredTextField';
 
 import { useLoadingContext } from '@/presentation/contexts/lodingContext';
 import { useMessageContext } from '@/presentation/contexts/messageContext';
@@ -47,28 +48,31 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <form className="flex min-h-screen items-center justify-center" onSubmit={handleSubmit}>
-      <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white shadow-md">
+    <form className="flex min-h-screen w-full items-center justify-center" onSubmit={handleSubmit}>
+      <div className="w-full max-w-lg rounded-lg border border-gray-200 bg-white shadow-md">
         <div className="border-b border-gray-200 px-6 py-4">
           <h2 className="text-xl font-semibold">ログイン</h2>
         </div>
         <div className="space-y-4 p-6">
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          />
-          <PasswordField
-            name="password"
-            label="Password"
-            value={form.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
+          <div>
+            <RequiredTextField
+              name="email"
+              label="Eメールアドレス"
+              value={form.email}
+              type="email"
+              placeholder="xxxxxxx@sample.com"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <PasswordField
+              name="password"
+              label="パスワード"
+              value={form.password}
+              onChange={handleChange}
+              autoComplete="current-password"
+            />
+          </div>
           <button
             type="submit"
             disabled={!form.email || !form.password}
