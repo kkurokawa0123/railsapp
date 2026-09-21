@@ -31,9 +31,9 @@ const SignUp: React.FC = () => {
       openLoading();
       showMessage('ユーザーアカウントを登録しています....しばらくお待ちください', SEVERITY.INFO);
       await singUp.mutateAsync(form);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       showMessage('サインアップが完了しました', SEVERITY.SUCCESS);
-      navigate('/signin');
+      navigate('/');
     } catch (err) {
       const message =
         err instanceof Error && err.message ? err.message : COMMON_ERROR_MESSAGES.UNEXPECTED_ERROR;
