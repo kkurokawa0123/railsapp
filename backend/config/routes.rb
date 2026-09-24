@@ -12,6 +12,12 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
       end
 
+      resources :todos, only: [:index,:show,:create,:update] do
+        collection do
+          patch :bulk_delete
+        end
+      end
+
     end
   end
   # mount_devise_token_auth_for 'User', at: 'auth'
