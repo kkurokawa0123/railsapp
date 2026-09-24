@@ -36,7 +36,7 @@ const SignIn: React.FC = () => {
       openLoading();
       showMessage('ログインしています....しばらくお待ちください', SEVERITY.INFO);
       await singIn.mutateAsync(form);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       navigate('/');
     } catch (err) {
       const message =

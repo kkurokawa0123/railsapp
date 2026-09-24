@@ -50,6 +50,7 @@ const PasswordChange = () => {
       }
       // パスワード変更後は強制的にログアウトする
       await singOut.mutateAsync();
+      navigate('/');
     } catch (err) {
       const message =
         err instanceof Error && err.message ? err.message : COMMON_ERROR_MESSAGES.UNEXPECTED_ERROR;
