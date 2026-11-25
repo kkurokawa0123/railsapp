@@ -6,7 +6,7 @@ import { useSingOut } from '@/queries/hooks/auth/useAuthMutation';
 
 import { useMessageContext } from '@/presentation/contexts/messageContext';
 import { useAuthContex } from '@/presentation/contexts/authContext';
-import { SEVERITY } from '@/domain/types/constants/severity';
+import { SEVERITY } from '@/shared/constants/severity';
 
 type Props = {
   loading: boolean;
@@ -76,7 +76,7 @@ const HeaderNavigation = (props: Props) => {
   );
 };
 
-const Header: React.FC = () => {
+const Header = () => {
   const navigate = useNavigate();
   const singOut = useSingOut();
   const { isAuthenticated, isLoading } = useAuthContex();

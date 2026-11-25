@@ -3,16 +3,17 @@ import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/queries/keys/query_keys';
 import { container } from '@/infrastructure/di/container';
 
-import type { InputSignUp, InputSignIn, InputChangePassword } from '@/domain/types/input/auth';
-import type { User } from '@/domain/types/user';
+import type { InputSignUp, InputSignIn, InputChangePassword } from '@/shared/inputs/auth';
+import type { ResponseUserData } from '@/shared/outputs/auth';
 
 export const useGetCurrentUser = () => {
   const { authUseCase } = container;
   return useQuery({
     queryKey: queryKeys.authUser.key,
-    queryFn: authUseCase.getCurrentUser,
+    queryFn: async () => {
+      return await authUseCase.getCurrentUser();
+    },
     staleTime: 1000 * 60 * 10,
-    // gcTime: 1000 * 60 * 60,
     retry: false,
   });
 };
@@ -26,8 +27,8 @@ export const useSingUp = () => {
       // DeviseTokenAuthの仕様で、自動ログインが走るため、強制的にサインアウトする
       await authUseCase.signOut();
     },
-    onError: (error) => {
-      console.error('useAuthMutation fail', error);
+    onError: (error: Error) => {
+      console.error(error.name, error.message);
     },
   });
 };
@@ -38,11 +39,11 @@ export const useSingIn = () => {
 
   return useMutation({
     mutationFn: async (input: InputSignIn) => await authUseCase.signIn(input),
-    onSuccess: (user: User) => {
+    onSuccess: (user: ResponseUserData) => {
       queryClient.setQueryData(queryKeys.authUser.key, user);
     },
-    onError: (error) => {
-      console.error('useAuthMutation fail', error);
+    onError: (error: Error) => {
+      console.error(error.name, error.message);
     },
   });
 };
@@ -56,8 +57,8 @@ export const useSingOut = () => {
     onSuccess: () => {
       queryClient.setQueryData(queryKeys.authUser.key, null);
     },
-    onError: (error) => {
-      console.error('useSingOut fail', error);
+    onError: (error: Error) => {
+      console.error(error.name, error.message);
     },
   });
 };
@@ -66,9 +67,9 @@ export const useUpdatePassword = () => {
   const { authUseCase } = container;
 
   return useMutation({
-    mutationFn: (input: InputChangePassword) => authUseCase.updatePassword(input),
-    onError: (error) => {
-      console.error('useUpdatePassword fail', error);
+    mutationFn: async (input: InputChangePassword) => await authUseCase.updatePassword(input),
+    onError: (error: Error) => {
+      console.error(error.name, error.message);
       return error.message;
     },
   });

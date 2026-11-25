@@ -5,9 +5,9 @@ import { PasswordChange } from '@/domain/models/entities/auth/passwordChange';
 import { UserName } from '@/domain/models/valueObjects/auth/userName';
 import { Email } from '@/domain/models/valueObjects/auth/email';
 import { Password } from '@/domain/models/valueObjects/auth/password';
-import type { User } from '@/domain/types/user';
-import type { AuthAccount } from '@/domain/types/authAccount';
-import type { InputSignUp, InputSignIn, InputChangePassword } from '@/domain/types/input/auth';
+import type { ResponseUserData } from '@/shared/outputs/auth';
+// import type { AuthAccount } from '@/shared/outputs/authAccount';
+import type { InputSignUp, InputSignIn, InputChangePassword } from '@/shared/inputs/auth';
 
 export class AuthUseCase {
   constructor(private readonly authRepository: IAuthRepository) {}
@@ -23,7 +23,7 @@ export class AuthUseCase {
     return await this.authRepository.signUp(params);
   }
 
-  async signIn(input: InputSignIn): Promise<User> {
+  async signIn(input: InputSignIn): Promise<ResponseUserData> {
     // Domainオブジェクトの構築インプット値をエンティティーに変換してサインアップの引数に設定
     const params = SignIn.create(new Email(input.email), new Password(input.password));
     return await this.authRepository.signIn(params);
@@ -33,7 +33,7 @@ export class AuthUseCase {
     return await this.authRepository.signOut();
   }
 
-  async getCurrentUser(): Promise<AuthAccount | undefined> {
+  async getCurrentUser(): Promise<ResponseUserData | undefined> {
     return await this.authRepository.getCurrentUser();
   }
   async updatePassword(input: InputChangePassword): Promise<string> {

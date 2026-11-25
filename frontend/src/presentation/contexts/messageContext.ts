@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { createContext } from 'react';
-import { type Severity } from '@/domain/types/constants/severity';
+import { type Severity } from '@/shared/constants/severity';
 
 type MessageContextType = {
   showMessage: (message: string, severity?: Severity) => void;

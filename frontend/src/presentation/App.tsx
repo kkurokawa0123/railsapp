@@ -8,6 +8,7 @@ import SignIn from '@/presentation/views/auth/SignIn';
 import SignUp from '@/presentation/views/auth/SignUp';
 import PasswordChange from '@/presentation/views/auth/PasswordChange';
 import { useAuthContex } from '@/presentation/contexts/authContext';
+import { TodoMain } from '@/presentation/views/todo/TodoMain';
 
 // テーマを作成
 const theme = createTheme({
@@ -46,7 +47,8 @@ const App = () => {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route element={<PrivateRoute />}>
-                <Route path="/" element={<SignIn />} />
+                <Route path="/" element={<TodoMain />} />
+                <Route path="/todomain" element={<TodoMain />} />
                 <Route path="/passwordchange" element={<PasswordChange />} />
               </Route>
             </Routes>

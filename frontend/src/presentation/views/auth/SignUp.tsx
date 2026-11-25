@@ -6,10 +6,10 @@ import { RequiredTextField } from '@/presentation/views/components/RequiredTextF
 import { useLoadingContext } from '@/presentation/contexts/lodingContext';
 import { useMessageContext } from '@/presentation/contexts/messageContext';
 import { useSingUp } from '@/queries/hooks/auth/useAuthMutation';
-import { SEVERITY } from '@/domain/types/constants/severity';
-import { COMMON_ERROR_MESSAGES } from '@/domain/types/constants/commonErrorMessage';
+import { SEVERITY } from '@/shared/constants/severity';
+import { COMMON_ERROR_MESSAGES } from '@/shared/constants/commonErrorMessage';
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const singUp = useSingUp();
   const { showMessage } = useMessageContext();

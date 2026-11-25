@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { type Todo_Filter_Type } from '@/domain/types/constants/todoFilterType';
+import { type Todo_Filter_Type } from '@/shared/constants/todoFilterType';
 
 export type TodoStatusContextType = {
   todoFilter: Todo_Filter_Type;

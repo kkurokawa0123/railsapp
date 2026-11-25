@@ -8,8 +8,8 @@ import { useAuthContex } from '@/presentation/contexts/authContext';
 import { useSingOut } from '@/queries/hooks/auth/useAuthMutation';
 import { useUpdatePassword } from '@/queries/hooks/auth/useAuthMutation';
 
-import { SEVERITY } from '@/domain/types/constants/severity';
-import { COMMON_ERROR_MESSAGES } from '@/domain/types/constants/commonErrorMessage';
+import { SEVERITY } from '@/shared/constants/severity';
+import { COMMON_ERROR_MESSAGES } from '@/shared/constants/commonErrorMessage';
 
 const PasswordChange = () => {
   const navigate = useNavigate();

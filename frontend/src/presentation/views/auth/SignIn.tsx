@@ -7,10 +7,10 @@ import { useLoadingContext } from '@/presentation/contexts/lodingContext';
 import { useMessageContext } from '@/presentation/contexts/messageContext';
 import { useAuthContex } from '@/presentation/contexts/authContext';
 import { useSingIn } from '@/queries/hooks/auth/useAuthMutation';
-import { SEVERITY } from '@/domain/types/constants/severity';
-import { COMMON_ERROR_MESSAGES } from '@/domain/types/constants/commonErrorMessage';
+import { SEVERITY } from '@/shared/constants/severity';
+import { COMMON_ERROR_MESSAGES } from '@/shared/constants/commonErrorMessage';
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
