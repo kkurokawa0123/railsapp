@@ -3,10 +3,17 @@ import { useGetCurrentUser } from '@/queries/hooks/auth/useAuthMutation';
 import { AuthContext, type AuthContextType } from '@/presentation/contexts/authContext';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const { data, isLoading, refetch } = useGetCurrentUser();
+  console.log('===== AuthProvider render =====');
+
+  const { data, isLoading, isError, error, refetch } = useGetCurrentUser();
+
+  console.log('AuthProvider data:', data);
+  console.log('AuthProvider isLoading:', isLoading);
+  console.log('AuthProvider isError:', isError);
+  console.log('AuthProvider error:', error);
 
   const value: AuthContextType = {
-    authData: data,
+    user: data,
     isLoading: isLoading,
     isAuthenticated: !!data,
     refetch: refetch,

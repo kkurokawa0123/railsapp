@@ -7,8 +7,8 @@ import { SignIn } from '@/domain/models/entities/auth/signIn';
 import { PasswordChange } from '@/domain/models/entities/auth/passwordChange';
 
 import type { IAuthRepository } from '@/domain/repositories/auth/iauthRepository';
-import type { User } from '@/domain/types/user';
-import type { AuthAccount } from '@/domain/types/authAccount';
+import type { ResponseUserData } from '@/shared/outputs/auth';
+// import type { AuthAccount } from '@/shared/outputs/authAccount';
 
 describe('AuthUseCase', () => {
   let authRepository: IAuthRepository;
@@ -100,7 +100,7 @@ describe('AuthUseCase', () => {
           id: 1,
           name: '山田太郎',
           email: 'test@example.com',
-        } as User;
+        } as ResponseUserData;
 
         vi.mocked(authRepository.signIn).mockResolvedValue(user);
 
@@ -166,7 +166,7 @@ describe('AuthUseCase', () => {
           id: 1,
           name: '山田太郎',
           email: 'test@example.com',
-        } as AuthAccount;
+        } as ResponseUserData;
 
         vi.mocked(authRepository.getCurrentUser).mockResolvedValue(authAccount);
 

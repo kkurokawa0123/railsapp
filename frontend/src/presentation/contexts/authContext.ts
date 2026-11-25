@@ -1,8 +1,9 @@
 import { createContext, useContext } from 'react';
-import type { AuthAccount } from '@/domain/types/authAccount';
+// import type { AuthAccount } from '@/shared/outputs/authAccount';
+import type { ResponseUserData } from '@/shared/outputs/auth';
 
 export type AuthContextType = {
-  authData: AuthAccount | undefined;
+  user: ResponseUserData | undefined;
   isLoading: boolean;
   isAuthenticated: boolean;
   refetch: () => void;

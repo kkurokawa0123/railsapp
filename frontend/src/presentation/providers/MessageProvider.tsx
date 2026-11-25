@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { type Severity, SEVERITY } from '@/domain/types/constants/severity';
+import { type Severity, SEVERITY } from '@/shared/constants/severity';
 import { MessageContext } from '@/presentation/contexts/messageContext';
 
 export const MessageProvider = ({ children }: { children: React.ReactNode }) => {

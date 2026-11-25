@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import type { User } from '@/domain/types/user';
+import type { ResponseUserData } from '@/shared/outputs/auth';
 import { SignUp } from '@/domain/models/entities/auth/signUp';
 import { SignIn } from '@/domain/models/entities/auth/signIn';
 import type { IAuthRepository } from '@/domain/repositories/auth/iauthRepository';
-import type { AuthAccount } from '@/domain/types/authAccount';
+// import type { AuthAccount } from '@/shared/outputs/authAccount';
 
 import * as api from '@/infrastructure/api/auth/authApiRequest';
 import { HTTP_STATUS } from '@/infrastructure/types/api/httpStatus';
@@ -33,14 +33,14 @@ export class AuthRepository implements IAuthRepository {
     }
   }
 
-  async signIn(params: SignIn): Promise<User> {
+  async signIn(params: SignIn): Promise<ResponseUserData> {
     try {
       const response = await api.requestSignIn(params);
       if (response.status !== HTTP_STATUS.OK) {
         throw new Error('サインインに失敗しました');
       }
 
-      const user = response.data.data as User;
+      const user = response.data.data as ResponseUserData;
       if (!user) {
         throw new Error('サインインに失敗しました');
       }
@@ -83,13 +83,13 @@ export class AuthRepository implements IAuthRepository {
     }
   }
 
-  async getCurrentUser(): Promise<AuthAccount | undefined> {
+  async getCurrentUser(): Promise<ResponseUserData | undefined> {
     try {
       const response = await api.requestrFetchValidateToken();
       if (response.status !== HTTP_STATUS.OK) {
         throw new Error('ユーザー情報の取得に失敗しました');
       }
-      const authData = response.data.data as AuthAccount | undefined;
+      const authData = response.data.data as ResponseUserData | undefined;
       return authData;
     } catch (err: unknown) {
       // APIコントローラーのエラーメッセージを受取

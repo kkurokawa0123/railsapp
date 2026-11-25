@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
 import { LoadingContext } from '@/presentation/contexts/lodingContext';
 
-export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const LoadingProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
 
   const openLoading = () => setLoading(true);
